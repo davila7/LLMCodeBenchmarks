@@ -7,12 +7,17 @@ import re
 import os
 from datetime import datetime
 from dotenv import load_dotenv
+from anthropic import Anthropic
 
 # Load environment variables from .env file
 load_dotenv()
 
-# Load API key from environment variable
+# Load API keys from environment variables
 openai.api_key = os.getenv('OPENAI_API_KEY')
+anthropic_api_key = os.getenv('ANTHROPIC_API_KEY')
+
+# Initialize Anthropic client
+anthropic_client = Anthropic(api_key=anthropic_api_key)
 
 # Models to test
 MODELS = [
@@ -21,7 +26,8 @@ MODELS = [
     # "gpt-4o-mini",
     # "gpt-4o",
     # "gpt-4",
-    "gpt-3.5-turbo"
+    "gpt-3.5-turbo",
+    "claude-3-5-sonnet-20240620"
 ]
 
 # Load tasks
@@ -40,11 +46,20 @@ def generate_code(model, prompt):
         if model in ["gpt-4o-mini", "gpt-4o", "gpt-4", "gpt-3.5-turbo"]:
             message.insert(0, {"role": "system", "content": "You are a helpful assistant for writing code."})
         
-        response = openai.ChatCompletion.create(
-            model=model,
-            messages=message
-        )
-        code = response.choices[0].message['content'].strip()
+        if model.startswith("claude"):
+            response = anthropic_client.messages.create(
+                max_tokens=1024,
+                messages=message,
+                model=model
+            )
+            code = response.content[0].text.strip()
+        else:
+            response = openai.ChatCompletion.create(
+                model=model,
+                messages=message
+            )
+            code = response.choices[0].message['content'].strip()
+        
         return code
     except Exception as e:
         print(f"Error: {model}: {e}")
@@ -112,6 +127,7 @@ def main():
             
             start_time = time.time()
             generated_code = generate_code(model, prompt)
+            print(generate_code)
             end_time = time.time()
             response_time = end_time - start_time
             
