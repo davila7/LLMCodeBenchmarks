@@ -1,2 +1,2 @@
 .env
-result_eval_*.json
+results/result_eval_*.json

@@ -25,9 +25,12 @@ MODELS = [
 ]
 
 # Load tasks
-def load_tasks(filename):
+def load_tasks(filename, take_first=False):
     with open(filename, 'r', encoding='utf-8') as f:
-        return json.load(f)
+        tasks = json.load(f)
+        if take_first:
+            return [tasks[0]] if tasks else []
+        return tasks
 
 def generate_code(model, prompt):
     try:
@@ -89,10 +92,14 @@ def eval_function(code, test_cases):
         return False, f"Error executing code: {e}\n{tb}", 0
 
 def main():
-    TASKS = load_tasks('tasks.json')
+    take_first = '--take-first' in sys.argv
+    TASKS = load_tasks('tasks.json', take_first)
     result = []
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"result_eval_{timestamp}.json"
+    results_dir = "results"
+    os.makedirs(results_dir, exist_ok=True)
+    filepath = os.path.join(results_dir, filename)
 
     for model in MODELS:
         print()
@@ -131,10 +138,10 @@ def main():
         result.append(model_result)
         print()
 
-    with open(filename, "w", encoding="utf-8") as f:
+    with open(filepath, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=4)
 
-    print(f"Evaluation completed. results saved in '{filename}'.")
+    print(f"Evaluation completed. results saved in '{filepath}'.")
 
 if __name__ == "__main__":
     main()
