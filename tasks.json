@@ -1,0 +1,203 @@
+[
+    {
+        "description": "Write a Python function that reverses a string.",
+        "test_cases": [
+            {"input": "hola", "expected": "aloh"},
+            {"input": "OpenAI", "expected": "IAnepO"},
+            {"input": "", "expected": ""},
+            {"input": "a", "expected": "a"}
+        ]
+    },
+    {
+        "description": "Write a Python function that checks if a number is prime.",
+        "test_cases": [
+            {"input": 2, "expected": 1},
+            {"input": 4, "expected": 0},
+            {"input": 17, "expected": 1},
+            {"input": 1, "expected": 0},
+            {"input": 0, "expected": 0},
+            {"input": -5, "expected": 0}
+        ]
+    },
+    {
+        "description": "Write a Python function that calculates the factorial of a number.",
+        "test_cases": [
+            {"input": 5, "expected": 120},
+            {"input": 0, "expected": 1},
+            {"input": 3, "expected": 6},
+            {"input": 1, "expected": 1}
+        ]
+    },
+    {
+        "description": "Write a Python function that checks if a string is a palindrome.",
+        "test_cases": [
+            {"input": "racecar", "expected": 1},
+            {"input": "hello", "expected": 0},
+            {"input": "madam", "expected": 1},
+            {"input": "12321", "expected": 1},
+            {"input": "12345", "expected": 0}
+        ]
+    },
+    {
+        "description": "Write a Python function that finds the maximum number in a list.",
+        "test_cases": [
+            {"input": [1, 2, 3, 4, 5], "expected": 5},
+            {"input": [-1, -2, -3, -4], "expected": -1},
+            {"input": [10, 9, 8, 7], "expected": 10},
+            {"input": [0], "expected": 0}
+        ]
+    },
+    {
+        "description": "Write a Python function that sorts a list of numbers in ascending order.",
+        "test_cases": [
+            {"input": [5, 3, 1, 4, 2], "expected": [1, 2, 3, 4, 5]},
+            {"input": [10, 9, 8, 7], "expected": [7, 8, 9, 10]},
+            {"input": [1, 2, 3, 4], "expected": [1, 2, 3, 4]},
+            {"input": [], "expected": []}
+        ]
+    },
+    {
+        "description": "Write a Python function that calculates the sum of all numbers in a list.",
+        "test_cases": [
+            {"input": [1, 2, 3, 4, 5], "expected": 15},
+            {"input": [-1, -2, -3, -4], "expected": -10},
+            {"input": [10, 20, 30], "expected": 60},
+            {"input": [0], "expected": 0}
+        ]
+    },
+    {
+        "description": "Write a Python function that finds the length of a string.",
+        "test_cases": [
+            {"input": "hello", "expected": 5},
+            {"input": "", "expected": 0},
+            {"input": "OpenAI", "expected": 6},
+            {"input": "a", "expected": 1}
+        ]
+    },
+    {
+        "description": "Write a Python function that converts a string to uppercase.",
+        "test_cases": [
+            {"input": "hello", "expected": "HELLO"},
+            {"input": "OpenAI", "expected": "OPENAI"},
+            {"input": "", "expected": ""},
+            {"input": "a", "expected": "A"}
+        ]
+    },
+    {
+        "description": "Write a Python function that converts a string to lowercase.",
+        "test_cases": [
+            {"input": "HELLO", "expected": "hello"},
+            {"input": "OpenAI", "expected": "openai"},
+            {"input": "", "expected": ""},
+            {"input": "A", "expected": "a"}
+        ]
+    },
+    {
+        "description": "Write a Python function that removes all vowels from a string.",
+        "test_cases": [
+            {"input": "hello", "expected": "hll"},
+            {"input": "OpenAI", "expected": "pn"},
+            {"input": "aeiou", "expected": ""},
+            {"input": "bcdfg", "expected": "bcdfg"}
+        ]
+    },
+    {
+        "description": "Write a Python function that counts the number of vowels in a string.",
+        "test_cases": [
+            {"input": "hello", "expected": 2},
+            {"input": "OpenAI", "expected": 3},
+            {"input": "aeiou", "expected": 5},
+            {"input": "bcdfg", "expected": 0}
+        ]
+    },
+    {
+        "description": "Write a Python function that checks if a number is even.",
+        "test_cases": [
+            {"input": 4, "expected": 1},
+            {"input": 7, "expected": 0},
+            {"input": 0, "expected": 1},
+            {"input": -2, "expected": 1}
+        ]
+    },
+    {
+        "description": "Write a Python function that checks if a number is odd.",
+        "test_cases": [
+            {"input": 4, "expected": 0},
+            {"input": 7, "expected": 1},
+            {"input": 0, "expected": 0},
+            {"input": -3, "expected": 1}
+        ]
+    },
+    {
+        "description": "Write a Python function that finds the minimum number in a list.",
+        "test_cases": [
+            {"input": [1, 2, 3, 4, 5], "expected": 1},
+            {"input": [-1, -2, -3, -4], "expected": -4},
+            {"input": [10, 9, 8, 7], "expected": 7},
+            {"input": [0], "expected": 0}
+        ]
+    },
+    {
+        "description": "Write a Python function that calculates the average of numbers in a list.",
+        "test_cases": [
+            {"input": [1, 2, 3, 4, 5], "expected": 3.0},
+            {"input": [-1, -2, -3, -4], "expected": -2.5},
+            {"input": [10, 20, 30], "expected": 20.0},
+            {"input": [0], "expected": 0.0}
+        ]
+    },
+    {
+        "description": "Write a Python function that finds the median of numbers in a list.",
+        "test_cases": [
+            {"input": [1, 2, 3, 4, 5], "expected": 3},
+            {"input": [1, 2, 3, 4], "expected": 2.5},
+            {"input": [10, 20, 30], "expected": 20},
+            {"input": [0], "expected": 0}
+        ]
+    },
+    {
+        "description": "Write a Python function that finds the mode of numbers in a list.",
+        "test_cases": [
+            {"input": [1, 2, 2, 3, 4], "expected": 2},
+            {"input": [1, 1, 2, 2, 3], "expected": 1},
+            {"input": [10, 20, 20, 30], "expected": 20},
+            {"input": [0], "expected": 0}
+        ]
+    },
+    {
+        "description": "Write a Python function that removes duplicates from a list.",
+        "test_cases": [
+            {"input": [1, 2, 2, 3, 4], "expected": [1, 2, 3, 4]},
+            {"input": [1, 1, 2, 2, 3], "expected": [1, 2, 3]},
+            {"input": [10, 20, 20, 30], "expected": [10, 20, 30]},
+            {"input": [0], "expected": [0]}
+        ]
+    },
+    {
+        "description": "Write a Python function that finds the intersection of two lists.",
+        "test_cases": [
+            {"input": [[1, 2, 3], [2, 3, 4]], "expected": [2, 3]},
+            {"input": [[1, 1, 2, 2], [2, 2, 3]], "expected": [2]},
+            {"input": [[10, 20, 30], [20, 30, 40]], "expected": [20, 30]},
+            {"input": [[0], [0]], "expected": [0]}
+        ]
+    },
+    {
+        "description": "Write a Python function that finds the union of two lists.",
+        "test_cases": [
+            {"input": [[1, 2, 3], [2, 3, 4]], "expected": [1, 2, 3, 4]},
+            {"input": [[1, 1, 2, 2], [2, 2, 3]], "expected": [1, 2, 3]},
+            {"input": [[10, 20, 30], [20, 30, 40]], "expected": [10, 20, 30, 40]},
+            {"input": [[0], [0]], "expected": [0]}
+        ]
+    },
+    {
+        "description": "Write a Python function that finds the difference of two lists.",
+        "test_cases": [
+            {"input": [[1, 2, 3], [2, 3, 4]], "expected": [1]},
+            {"input": [[1, 1, 2, 2], [2, 2, 3]], "expected": [1]},
+            {"input": [[10, 20, 30], [20, 30, 40]], "expected": [10]},
+            {"input": [[0], [0]], "expected": []}
+        ]
+    }
+]
