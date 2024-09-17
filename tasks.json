@@ -114,13 +114,6 @@
         ]
     },
     {
-        "description": "Create a function that checks if a binary tree is a valid binary search tree.",
-        "test_cases": [
-            {"input": {"value": 2, "left": {"value": 1}, "right": {"value": 3}}, "expected": true},
-            {"input": {"value": 5, "left": {"value": 1}, "right": {"value": 4, "left": {"value": 3}, "right": {"value": 6}}}, "expected": false}
-        ]
-    },
-    {
         "description": "Create a function that solves the N-Queens problem for a given N.",
         "test_cases": [
             {"input": 4, "expected": [[[1,3],[2,1],[3,4],[4,2]], [[1,2],[2,4],[3,1],[4,3]]]},
@@ -128,7 +121,7 @@
         ]
     },
     {
-        "description": "Create a function that finds the shortest path in a maze represented by a 2D grid.",
+        "description": "Create a function that finds the shortest path in a maze represented by a 2D grid. #Example input: [[[0, 1, 0, 0],[0, 1, 0, 1],[0, 0, 0, 0],[1, 1, 1, 0]]]",
         "test_cases": [
             {
                 "input": [[
@@ -142,14 +135,14 @@
         ]
     },
     {
-        "description": "Create a function that implements the quicksort algorithm.",
+        "description": "Create a function that implements the quicksort algorithm. #example input: [3,6,8,10,1,2,1]",
         "test_cases": [
             {"input": [3,6,8,10,1,2,1], "expected": [1,1,2,3,6,8,10]},
             {"input": [], "expected": []}
         ]
     },
     {
-        "description": "Create a function that finds the number of islands in a given 2D grid.",
+        "description": "Create a function that finds the number of islands in a given 2D grid. #example input: [[[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 1]]]",
         "test_cases": [
             {
                 "input": [[
@@ -180,14 +173,14 @@
         ]
     },
     {
-        "description": "Create a function that implements the merge sort algorithm.",
+        "description": "Create a function that implements the merge sort algorithm. #Example input: [5,2,4,6,1,3]",
         "test_cases": [
             {"input": [5,2,4,6,1,3], "expected": [1,2,3,4,5,6]},
             {"input": [10,9,8,7], "expected": [7,8,9,10]}
         ]
     },
     {
-        "description": "Create a function that detects cycles in a directed graph.",
+        "description": "Create a function that detects cycles in a directed graph. #Example input: [[1,2],[2,3],[3,4],[4,2]]",
         "test_cases": [
             {"input": [[1,2],[2,3],[3,4],[4,2]], "expected": true},
             {"input": [[1,2],[2,3],[3,4]], "expected": false}

@@ -22,10 +22,10 @@ anthropic_client = Anthropic(api_key=anthropic_api_key)
 # Models to test
 MODELS = [
     "o1-preview",
-    # "o1-mini",
+    "o1-mini",
     "gpt-4o-mini",
-    # "gpt-4o",
-    # "gpt-4",
+    "gpt-4o",
+    "gpt-4",
     "gpt-3.5-turbo",
     "claude-3-5-sonnet-20240620"
 ]
@@ -75,11 +75,11 @@ def clean_code(code):
     return code.strip()
 
 def eval_function(code, test_cases):
-    local_vars = {}
+    global_vars = {}
     try:
-        exec(code, {}, local_vars)
+        exec(code, global_vars)
         func = None
-        for name, obj in local_vars.items():
+        for name, obj in global_vars.items():
             if callable(obj):
                 func = obj
                 break
@@ -91,7 +91,12 @@ def eval_function(code, test_cases):
             expected = caso["expected"]
             try:
                 start_time = time.time()
-                result = func(input_val)
+                if isinstance(input_val, (list, tuple)):
+                    result = func(*input_val)
+                elif isinstance(input_val, dict):
+                    result = func(**input_val)
+                else:
+                    result = func(input_val)
                 end_time = time.time()
                 execution_time = end_time - start_time
                 if result != expected:
@@ -127,7 +132,6 @@ def main():
             
             start_time = time.time()
             generated_code = generate_code(model, prompt)
-            print(generate_code)
             end_time = time.time()
             response_time = end_time - start_time
             
