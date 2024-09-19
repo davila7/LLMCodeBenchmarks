@@ -1,2 +1,4 @@
 .env
 results/result_eval_*.json
+.venv/*
+

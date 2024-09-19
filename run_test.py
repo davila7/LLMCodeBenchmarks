@@ -8,6 +8,7 @@ import os
 from datetime import datetime
 from dotenv import load_dotenv
 from anthropic import Anthropic
+from mistralai import Mistral
 
 # Load environment variables from .env file
 load_dotenv()
@@ -15,9 +16,13 @@ load_dotenv()
 # Load API keys from environment variables
 openai.api_key = os.getenv('OPENAI_API_KEY')
 anthropic_api_key = os.getenv('ANTHROPIC_API_KEY')
+mistral_api_key = os.getenv('MISTRAL_API_KEY')
 
 # Initialize Anthropic client
 anthropic_client = Anthropic(api_key=anthropic_api_key)
+
+# Initialize Mistral client
+mistral_client = Mistral(api_key=mistral_api_key)
 
 # Models to test
 MODELS = [
@@ -27,7 +32,9 @@ MODELS = [
     "gpt-4o",
     "gpt-4",
     "gpt-3.5-turbo",
-    "claude-3-5-sonnet-20240620"
+    "claude-3-5-sonnet-20240620",
+    "codestral-latest",
+    "codestral-mamba-latest"
 ]
 
 # Load tasks
@@ -43,7 +50,7 @@ def generate_code(model, prompt):
         full_prompt = f"{prompt}\n\nPlease provide ONLY the Python code without additional explanations or Markdown code blocks"
         message = [{"role": "user", "content": full_prompt}]
         
-        if model in ["gpt-4o-mini", "gpt-4o", "gpt-4", "gpt-3.5-turbo"]:
+        if model in ["gpt-4o-mini", "gpt-4o", "gpt-4", "gpt-3.5-turbo", "claude-3-5-sonnet-20240620", "codestral-latest", "codestral-mamba-latest"]:
             message.insert(0, {"role": "system", "content": "You are a helpful assistant for writing code."})
         
         if model.startswith("claude"):
@@ -53,6 +60,12 @@ def generate_code(model, prompt):
                 model=model
             )
             code = response.content[0].text.strip()
+        elif model.startswith("codestral"):
+            response = mistral_client.chat.complete(model=model, messages=message)
+            if response is not None:
+                code = response.choices[0].message.content
+            else:
+                code = ""
         else:
             response = openai.ChatCompletion.create(
                 model=model,
@@ -65,14 +78,30 @@ def generate_code(model, prompt):
         print(f"Error: {model}: {e}")
         return ""
 
+import re
+
 def clean_code(code):
+    """
+    Cleans the provided code by removing code block markers and extracting the function definition.
+
+    Args:
+        code (str): The input code as a string.
+
+    Returns:
+        str: The cleaned code string, starting from the function definition and stripped of leading/trailing whitespace.
+    """
+    # Remove code block markers
     code = re.sub(r"```python", "", code)
     code = re.sub(r"```", "", code)
+
+    # Find the start of the function definition
     match = re.search(r"def\s+\w+\s*\(.*\):", code)
     if match:
         start = match.start()
         code = code[start:]
+
     return code.strip()
+
 
 def eval_function(code, test_cases):
     global_vars = {}
