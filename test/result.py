@@ -5,13 +5,40 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 def list_json_files(directory):
+    """
+    Returns a list of JSON files in the specified directory.
+    
+    Args:
+        directory (str): The directory to search for JSON files.
+    
+    Returns:
+        list: A list of JSON file names.
+    """
     return [f for f in os.listdir(directory) if f.endswith('.json')]
 
 def load_json_file(filepath):
+    """
+    Loads a JSON file and returns its contents.
+    
+    Args:
+        filepath (str): The path to the JSON file.
+    
+    Returns:
+        dict: The contents of the JSON file.
+    """
     with open(filepath, 'r') as file:
         return json.load(file)
 
 def display_as_table(data):
+    """
+    Converts a list of JSON data into a pandas DataFrame.
+    
+    Args:
+        data (list): A list of JSON data.
+    
+    Returns:
+        pd.DataFrame: A pandas DataFrame representation of the JSON data.
+    """
     rows = []
     for entry in data:
         model = entry.get('model', '')
@@ -45,10 +72,11 @@ def main():
         data = load_json_file(filepath)
         df = display_as_table(data)
         
-        # Group by 'Model' and 'Success' and plot
         grouped_df = df.groupby(['Model', 'Success']).size().unstack(fill_value=0)
         
         tab1, tab2 = st.tabs(["Charts", "Results"])
+
+        tab1.subheader("Charts")
         
         with tab1:
             fig, ax = plt.subplots(figsize=(10, 6))

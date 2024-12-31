@@ -1,0 +1,910 @@
+[
+  {
+    "id": "70ed7ded-9978-4210-90b8-111ec4380710",
+    "name": "Swarm",
+    "description": "I am an expert in Swarm, here to assist you with setting up, configuring, and optimizing your Swarm projects.",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/70ed7ded-9978-4210-90b8-111ec4380710.png",
+    "welcome": "Welcome to your Swarm journey! I'm here to help you navigate through the setup, customization, and deployment of your Swarm projects",
+    "slug": "swarm",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "new"
+    ]
+  },
+  {
+    "id": "e5fa75cc-0076-4f36-8794-892bb7a0e372",
+    "name": "Vue.js 3.x LTS",
+    "description": "I am a Vue.js 3.x specialist, here to help you with any questions or tasks related to this version. I can provide code examples, optimizations, and best practices specific to Vue.js 3.x",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/0ce52b4e-3c5d-4eae-8e80-3d83de5339c9/e5fa75cc-0076-4f36-8794-892bb7a0e372.png",
+    "welcome": "Hello, I'm your new Vue.js 3.x AI Assistant. How can I help you with your Vue.js 3.x projects today?",
+    "slug": "vue-js-3-lts",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "new"
+    ]
+  },
+  {
+    "id": "315e71ec-36a8-4de5-85c7-131fef36c4db",
+    "name": "GitHub Expert",
+    "description": "I am a specialized assistant for GitHub, providing professional guidance on implementation, configuration, and optimization of GitHub features for web and mobile applications",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/315e71ec-36a8-4de5-85c7-131fef36c4db.png",
+    "welcome": "Hello, how can I help you related to Github?",
+    "slug": "github-expert",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "new"
+    ]
+  },
+  {
+    "id": "70e309a4-db6b-4a4b-bb94-48ccde223d6e",
+    "name": "X API",
+    "description": "I am an expert assistant specialized in the X API, here to help you with any questions or tasks related to interacting with X data.",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/0ce52b4e-3c5d-4eae-8e80-3d83de5339c9/70e309a4-db6b-4a4b-bb94-48ccde223d6e.png",
+    "welcome": "Hello! I'm your new AI Assistant specialized in the X API. How can I assist you today?",
+    "slug": "agent-5361c08f",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "new"
+    ]
+  },
+  {
+    "id": "d3c25fff-ffb9-4834-8cfd-c2bff1cca9ce",
+    "name": "Supabase Assistant",
+    "description": "I'm a specialized Supabase assistant with expertise in PostgreSQL databases, authentication, real-time APIs, storage, and serverless functions.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/3a0c0508-5870-4faf-b631-132b1d8a6ec1/d3c25fff-ffb9-4834-8cfd-c2bff1cca9ce.png",
+    "welcome": "Hello! I'm your Supabase expert, ready to assist with database design, real-time APIs, serverless functions, and more. How can I help optimize your project today?",
+    "slug": "agent-2d26ac96",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "new"
+    ]
+  },
+  {
+    "id": "80c668a7-0dc7-4246-81e0-042749f99ed5",
+    "name": "CrewAI",
+    "description": "Hello, I'm your new AI Agent Assistant, specialized in CrewAI. How can I assist you today?",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/0ce52b4e-3c5d-4eae-8e80-3d83de5339c9/80c668a7-0dc7-4246-81e0-042749f99ed5.png",
+    "welcome": "Hello, I'm your new AI Agent Assistant, specialized in CrewAI. How can I assist you today?",
+    "slug": "crewai",
+    "tools": [
+      "codebuilder"
+    ],
+    "tags": [
+      "new"
+    ]
+  },
+  {
+    "id": "53f3c928-9d9f-4aae-a3e1-058d657f286a",
+    "name": "StackOverflow Search",
+    "description": "Code assistant with the ability to search on stackoverflow",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/664ea16c-f918-4d48-900c-fa728c992b4f/53f3c928-9d9f-4aae-a3e1-058d657f286a.png",
+    "welcome": "Code assistant with the ability to search on stackoverflow",
+    "slug": "stackoverflow",
+    "tools": [
+      "stackoverflow"
+    ],
+    "tags": [
+      "new"
+    ]
+  },
+  {
+    "id": "053cf423-d400-4a6c-a2dc-77ba12077dc6",
+    "name": "Twilio Assistant",
+    "description": "Twilio expert assistant providing professional guidance to implement effective and secure cloud communication solutions.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/3a0c0508-5870-4faf-b631-132b1d8a6ec1/053cf423-d400-4a6c-a2dc-77ba12077dc6.png",
+    "welcome": "Hello! I'm a Twilio expert assistant ready to help you design, implement, and optimize cloud communication solutions. How can I assist you with your Twilio project today?",
+    "slug": "agent-9dd4509c",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "new"
+    ]
+  },
+  {
+    "id": "ec1be541-a758-416a-baa0-1b48f1da862b",
+    "name": "Paypal API",
+    "description": "I am an expert assistant for the PayPal API, providing access to various features for processing payments, managing transactions, and integrating PayPal services into applications.",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/0ce52b4e-3c5d-4eae-8e80-3d83de5339c9/ec1be541-a758-416a-baa0-1b48f1da862b.png",
+    "welcome": "Hello, I'm your new AI Agent Assistant specialized in PayPal API",
+    "slug": "pay-pal-api",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "new"
+    ]
+  },
+  {
+    "id": "4397e3b4-9788-448e-bfcd-e7d3eb383b9d",
+    "name": "Python 3.10",
+    "description": "A comprehensive source for Python programming guidance",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/4397e3b4-9788-448e-bfcd-e7d3eb383b9d.png",
+    "welcome": "A comprehensive source for Python programming guidance",
+    "slug": "python310",
+    "tools": [
+      "code-interpreter"
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "d60d5556-7ad4-4f05-8c98-d2d6232776fa",
+    "name": "PHP 8.1",
+    "description": "I am a PHP 8.1 expert, adept at offering precise code solutions and insights into PHP 8.1",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/d60d5556-7ad4-4f05-8c98-d2d6232776fa.png",
+    "welcome": "I can assist with PHP coding, debugging, and optimization for better performance.",
+    "slug": "php-81",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "9319408f-a23d-4c28-adcd-5309a20b2a10",
+    "name": "Javascript ES13 Expert",
+    "description": "A thorough and authoritative source for all JavaScript-related queries.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/9319408f-a23d-4c28-adcd-5309a20b2a10.png",
+    "welcome": "A thorough and authoritative source for all JavaScript-related queries.",
+    "slug": "agent-70b72d37",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "6ac6bec1-6eff-48f1-aabc-f5c0310ebf7e",
+    "name": "SQL Expert",
+    "description": "Offers tailored advice, practical examples, and best practice tips for all SQL expertise levels.",
+    "image": "https://auth.codegpt.co/storage/v1/render/image/public/agents/664ea16c-f918-4d48-900c-fa728c992b4f/6ac6bec1-6eff-48f1-aabc-f5c0310ebf7e.png?width=128&height=128&resize=contain",
+    "welcome": "Your go-to source for all things SQL, from queries to optimization!",
+    "slug": "agent-d2d9bac9",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "c0c7a231-519d-4eb3-bec1-03a9f5bbd3f1",
+    "name": "TypeScript",
+    "description": "Expert in TypeScript dev, I offer code examples, best practices, and guidance on type annotations, interfaces, and generics.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/3a0c0508-5870-4faf-b631-132b1d8a6ec1/c0c7a231-519d-4eb3-bec1-03a9f5bbd3f1.jpg",
+    "welcome": "Expert in TypeScript dev, I offer code examples, best practices, and guidance on type annotations, interfaces, and generics.",
+    "slug": "Typescript",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "d25c6710-f956-4814-8c9e-42f93bc14c2d",
+    "name": "HTML Expert",
+    "description": "A comprehensive resource for HTML learning, offering detailed explanations, best practices, examples, exercises, and quizzes.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/664ea16c-f918-4d48-900c-fa728c992b4f/d25c6710-f956-4814-8c9e-42f93bc14c2d.png",
+    "welcome": "A knowledgeable and detailed guide on all things HTML.",
+    "slug": "agent-dba0fe22",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "0c37bf03-f63e-415d-be4d-7307e9335a22",
+    "name": "CSS Designer",
+    "description": "Expert advice on all things CSS, from basics to advanced web design techniques.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/0c37bf03-f63e-415d-be4d-7307e9335a22.png",
+    "welcome": "A creative guide for all CSS design-related inquiries.",
+    "slug": "agent-b1145ced",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "f36a766b-870c-49ab-9b5d-91755b928499",
+    "name": "Rust Expert",
+    "description": "I am a Rust programming assistant, adept at offering precise code solutions, debugging tips, and optimization strategies. My expertise ensures your Rust code is efficient, readable, and up-to-date with the latest standards.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/f36a766b-870c-49ab-9b5d-91755b928499.png",
+    "welcome": "I am a Rust programming assistant, adept at offering precise code solutions, debugging tips, and optimization strategies. My expertise ensures your Rust code is efficient, readable, and up-to-date with the latest standards",
+    "slug": "rust-158",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "c5a31c29-1f92-4883-9edd-4e4b91bb83e3",
+    "name": "C# Expert",
+    "description": "Expert C# guidance for coding excellence. Tailored solutions in C# up to version 10",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/c5a31c29-1f92-4883-9edd-4e4b91bb83e3.png",
+    "welcome": "Offering code suggestions, debugging aid, and optimization tips for C# v10 tasks.",
+    "slug": "c-sharp",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "988a8282-848c-4b14-8025-92404fc025dc",
+    "name": "GO Expert",
+    "description": "I am an AI assistant specialized in Go, dedicated to providing expert guidance on Go programming",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/c0d7df55-4849-49c3-b547-26f0e70e4278/988a8282-848c-4b14-8025-92404fc025dc.png",
+    "welcome": "I am an AI assistant specialized in Go, dedicated to providing expert guidance on Go programming",
+    "slug": "agent-3272680d",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "7314a333-4214-41fb-85bd-eb510bb20f77",
+    "name": "Swift Expert",
+    "description": "Expert Xcode advice meets Gen X nostalgia for a unique, relaxed learning experience.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/7314a333-4214-41fb-85bd-eb510bb20f77.png",
+    "welcome": "Swift wisdom with a nostalgic Gen X vibe",
+    "slug": "agent-ab90e599",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "e139ff29-db7d-40b0-9abb-f7d37e4960d7",
+    "name": "C++",
+    "description": "Assists in solving complex C++ coding problems, debugging code, and understanding advanced C++ concepts. Provides expert advice and solutions.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/e139ff29-db7d-40b0-9abb-f7d37e4960d7.png",
+    "welcome": "Master of C++ Programming",
+    "slug": "agent-1f450813",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "c11a5435-756b-49f0-8e8e-61fe4d2ea44f",
+    "name": "C Expert",
+    "description": "Assisting with C code development, I offer detailed explanations, efficient coding techniques, and robust error handling strategies.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/c11a5435-756b-49f0-8e8e-61fe4d2ea44f.png",
+    "welcome": "Expert in C language, I provide precise coding assistance, error debugging, and optimization tips aligned with C18 standards",
+    "slug": "c-expert",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "3c412d3f-7202-4a54-a75f-3aed305ceb77",
+    "name": "Ruby 3.0.2",
+    "description": "Comprehensive Ruby guide: from basic concepts to advanced techniques, with practical examples and best practices.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/3a0c0508-5870-4faf-b631-132b1d8a6ec1/3c412d3f-7202-4a54-a75f-3aed305ceb77.png",
+    "welcome": "Greetings, I'm your Ruby 3.0.2 expert assistant. I'm here to provide professional guidance and practical solutions for Ruby application development.",
+    "slug": "agent-5cd2117d",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "5077a39b-9528-49eb-97d6-840a31c3c832",
+    "name": "R Expert",
+    "description": "A comprehensive resource for R programming, covering basic to advanced concepts with detailed insights and techniques",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/5077a39b-9528-49eb-97d6-840a31c3c832.jpg",
+    "welcome": "A comprehensive resource for R programming, covering basic to advanced concepts with detailed insights and techniques",
+    "slug": "r-expert",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "aa38d60f-cd42-4d5c-8d8c-0f8d1a806371",
+    "name": "GIT Expert",
+    "description": "A comprehensive resource for GIT, covering basic to advanced concepts with detailed insights and techniques",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/aa38d60f-cd42-4d5c-8d8c-0f8d1a806371.jpg",
+    "welcome": "A comprehensive resource for GIT, covering basic to advanced concepts with detailed insights and techniques",
+    "slug": "git-expert",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "703dbeaa-e326-491e-b5cf-2e4c0332062c",
+    "name": "Cobol",
+    "description": "Hello, I'm Cobol, your expert agent, specializing in IBM Enterprise COBOL 6.3, Micro Focus Visual COBOL 7.0, and GnuCOBOL 3.1.2.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/3a0c0508-5870-4faf-b631-132b1d8a6ec1/703dbeaa-e326-491e-b5cf-2e4c0332062c.jpg",
+    "welcome": "Hello, I'm Cobol, your expert agent",
+    "slug": "agent-c73a116e",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "a9b7b559-a84d-464e-96ac-e603082e6cda",
+    "name": "BASH",
+    "description": "I'm a specialized Bash programming assistant, knowledgeable about all Bash, ready to help with scripting, debugging, and optimization.",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/0ce52b4e-3c5d-4eae-8e80-3d83de5339c9/a9b7b559-a84d-464e-96ac-e603082e6cda.png",
+    "welcome": "Hello, I'm your Bash Scripting Assistant. I'm an AI specialized in Bash and shell scripting, ready to help you with coding, troubleshooting, and best practices for command-line operations and shell automation. How can I assist you with Bash scripting today?",
+    "slug": "agent-9f30eb32",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "languages"
+    ]
+  },
+  {
+    "id": "70ed7ded-9978-4210-90b8-111ec4380710",
+    "name": "Swarm",
+    "description": "I am an expert in Swarm, here to assist you with setting up, configuring, and optimizing your Swarm projects.",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/70ed7ded-9978-4210-90b8-111ec4380710.png",
+    "welcome": "Welcome to your Swarm journey! I'm here to help you navigate through the setup, customization, and deployment of your Swarm projects",
+    "slug": "swarm",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "c407d42d-595f-4148-87af-8d02de8fc7b9",
+    "name": "React Expert",
+    "description": "Expert in React dev, I offer code examples, best practices, and guidance.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/c407d42d-595f-4148-87af-8d02de8fc7b9.png",
+    "welcome": "I assist with component creation, state management, and React best practices.",
+    "slug": "react",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "e5fa75cc-0076-4f36-8794-892bb7a0e372",
+    "name": "Vue.js 3.x LTS",
+    "description": "I am a Vue.js 3.x specialist, here to help you with any questions or tasks related to this version. I can provide code examples, optimizations, and best practices specific to Vue.js 3.x",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/0ce52b4e-3c5d-4eae-8e80-3d83de5339c9/e5fa75cc-0076-4f36-8794-892bb7a0e372.png",
+    "welcome": "Hello, I'm your new Vue.js 3.x AI Assistant. How can I help you with your Vue.js 3.x projects today?",
+    "slug": "vue-js-3-lts",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "62467d55-21c6-4526-a18d-ac42b1f5bef6",
+    "name": "Laravel Expert",
+    "description": "Boost your web applications with Laravel AI, the intelligent assistant that streamlines and enhances your PHP development, making building modern, scalable applications more efficient and enjoyable",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/62467d55-21c6-4526-a18d-ac42b1f5bef6.png",
+    "welcome": "Elevate your PHP development with Laravel Expert",
+    "slug": "laravel",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "e8b37177-abfe-4a4f-80be-6f518f0cede5",
+    "name": "Next.js Expert",
+    "description": "Transform your web projects with Next.js, the intelligent assistant that streamlines and enhances the development process, making building high-performance, scalable applications easier and faster",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/e8b37177-abfe-4a4f-80be-6f518f0cede5.png",
+    "welcome": "Transform your web projects with Next.js, the intelligent assistant that streamlines and enhances the development process, making building high-performance, scalable applications easier and faster",
+    "slug": "nextjs",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "cd588fba-b59b-42ec-9c0a-b3834a92c0c3",
+    "name": "Spring Expert",
+    "description": "Enhance your Java development with Spring AI, the intelligent assistant that simplifies and optimizes application development, making building robust, scalable solutions more efficient and effortless",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/cd588fba-b59b-42ec-9c0a-b3834a92c0c3.png",
+    "welcome": "Supercharge your Java applications with Spring AI",
+    "slug": "spring",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "a5a7c1e5-9b1f-446d-a57f-a672f6826063",
+    "name": "Streamlit",
+    "description": "Harness the power of Streamlit with me, your expert guide. Together, we'll craft interactive web applications that bring your data to life.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/a5a7c1e5-9b1f-446d-a57f-a672f6826063.png",
+    "welcome": "Harness the power of Streamlit with me, your expert guide. Together, we'll craft interactive web applications that bring your data to life",
+    "slug": "streamlit",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "7fdd153d-fd33-4780-96e9-8ac8b57a1603",
+    "name": "Angular Expert",
+    "description": "Empowering Angular development with expert guidance and practical solutions",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/c0d7df55-4849-49c3-b547-26f0e70e4278/7fdd153d-fd33-4780-96e9-8ac8b57a1603.png",
+    "welcome": "Empowering Angular 14 development with expert guidance and practical solutions",
+    "slug": "agent-52d977c7",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "afd30cbe-ff00-424f-b6d1-94810013d4fa",
+    "name": "PyTorch Expert",
+    "description": "Accelerate your machine learning projects with PyTorch AI, the intelligent assistant that simplifies model building and training, making advanced deep learning accessible and efficient",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/afd30cbe-ff00-424f-b6d1-94810013d4fa.png",
+    "welcome": "Hi, How can I help you with PyTorch?",
+    "slug": "pytorch",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "80c668a7-0dc7-4246-81e0-042749f99ed5",
+    "name": "CrewAI",
+    "description": "Hello, I'm your new AI Agent Assistant, specialized in CrewAI. How can I assist you today?",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/0ce52b4e-3c5d-4eae-8e80-3d83de5339c9/80c668a7-0dc7-4246-81e0-042749f99ed5.png",
+    "welcome": "Hello, I'm your new AI Agent Assistant, specialized in CrewAI. How can I assist you today?",
+    "slug": "crewai",
+    "tools": [
+      "codebuilder"
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "469ec7c2-c6c9-4f82-854d-42f16e01302b",
+    "name": "LlamaIndex Python Expert",
+    "description": "LlamaIndex: Streamlining Application Development with Advanced Language Model Integration",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/c0d7df55-4849-49c3-b547-26f0e70e4278/469ec7c2-c6c9-4f82-854d-42f16e01302b.jpeg",
+    "welcome": "LlamaIndex: a data framework for LLM-based apps, enhancing context for more accurate text generation. Available in Python.",
+    "slug": "llamaindex-v01013",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "de7221fa-aeae-467f-9b6a-a29176412592",
+    "name": "LangChain Python",
+    "description": "Expert support for LangChain API integration, offering customized solutions, proactive advice, and detailed explanations in your preferred language",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/de7221fa-aeae-467f-9b6a-a29176412592.png",
+    "welcome": "Expert support for LangChain API integration, offering customized solutions, proactive advice, and detailed explanations in your preferred language",
+    "slug": "agent-dab48131",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "039144cc-bb44-4f33-a7f7-15940b0beed3",
+    "name": "Gradio",
+    "description": "As a Gradio specialist, I help create and optimize interactive Python apps using the Gradio framework",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/0ce52b4e-3c5d-4eae-8e80-3d83de5339c9/039144cc-bb44-4f33-a7f7-15940b0beed3.png",
+    "welcome": "Hello! I'm your AI Agent Assistant, specialized in helping you create, deploy, and optimize Gradio applications with Python. Let's build amazing interfaces and streamline your workflows!",
+    "slug": "gradio",
+    "tools": [
+      "codebuilder"
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "d0c99b3d-568b-4273-8b91-ab7f14e23828",
+    "name": "Pandas Expert",
+    "description": "Empower your data science projects with Pandas AI, the intelligent assistant that simplifies and accelerates data manipulation and analysis, making complex tasks more efficient and accessible",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/d0c99b3d-568b-4273-8b91-ab7f14e23828.png",
+    "welcome": "Empower your data science projects with Pandas AI, the intelligent assistant that simplifies and accelerates data manipulation and analysis, making complex tasks more efficient and accessible",
+    "slug": "pandas",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "db2bf262-6b16-4a26-b859-865e219dd25a",
+    "name": "NumPy Expert",
+    "description": "Enhance your data science projects with NumPy AI, the intelligent assistant that optimizes and simplifies complex scientific calculations, making data analysis faster and more efficient",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/db2bf262-6b16-4a26-b859-865e219dd25a.png",
+    "welcome": "Enhance your data science projects with NumPy AI, the intelligent assistant that optimizes and simplifies complex scientific calculations, making data analysis faster and more efficient",
+    "slug": "numpy",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "1a54487c-8ea4-4194-a587-e3ffe6807a02",
+    "name": "Svelte 3.55.0",
+    "description": "Expert in Svelte dev, I offer code examples, best practices, and guidance.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/3a0c0508-5870-4faf-b631-132b1d8a6ec1/1a54487c-8ea4-4194-a587-e3ffe6807a02.jpg",
+    "welcome": "Svelte is a JavaScript framework that compiles components into optimized code to create reactive user interfaces.",
+    "slug": "agent-2fb1afff",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "frameworks"
+    ]
+  },
+  {
+    "id": "08647f25-1972-4e9c-96d5-bc432db9480b",
+    "name": "OpenAI API",
+    "description": "Explore resources, tutorials, API docs, and dynamic examples to get the most out of OpenAI's developer platform.",
+    "image": "https://auth.codegpt.co/storage/v1/render/image/public/agents/8e0f93f3-5ddc-42cc-9096-d5db3f18490b/08647f25-1972-4e9c-96d5-bc432db9480b?now=1705341361599?width=128&height=128&resize=contain",
+    "welcome": "Hello, I'm your AI Assistant, here to help with the latest OpenAI models like GPT-4 Turbo, GPT-4o, and more!",
+    "slug": "agent-72c92c2a",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "api"
+    ]
+  },
+  {
+    "id": "d379f4d8-abd6-4363-be68-02eace375d4e",
+    "name": "Stripe API",
+    "description": "Provides guidance on integration and troubleshooting, catering to developers with varying expertise in online payment processing.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8e0f93f3-5ddc-42cc-9096-d5db3f18490b/d379f4d8-abd6-4363-be68-02eace375d4e.jpg",
+    "welcome": "I'm a specialized agent in the Stripe API, addressing inquiries related to balances, transactions, recurring payment setups, refunds, and account updates. I focus on security and efficiency.",
+    "slug": "stripe-api",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "api"
+    ]
+  },
+  {
+    "id": "70e309a4-db6b-4a4b-bb94-48ccde223d6e",
+    "name": "X API",
+    "description": "I am an expert assistant specialized in the X API, here to help you with any questions or tasks related to interacting with X data.",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/0ce52b4e-3c5d-4eae-8e80-3d83de5339c9/70e309a4-db6b-4a4b-bb94-48ccde223d6e.png",
+    "welcome": "Hello! I'm your new AI Assistant specialized in the X API. How can I assist you today?",
+    "slug": "agent-5361c08f",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "api"
+    ]
+  },
+  {
+    "id": "96b839bd-636f-45f5-81cc-0418eb230046",
+    "name": "Mercado Pago API",
+    "description": "I'm an AI assistant specialized in Mercado Pago integrations, offering expert coding guidance and best practices for developers.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8e0f93f3-5ddc-42cc-9096-d5db3f18490b/96b839bd-636f-45f5-81cc-0418eb230046.jpg",
+    "welcome": "Explore resources, tutorials, API docs, and dynamic examples to get the most out of the Mercado Pago developer platform.",
+    "slug": "mercado-pago2",
+    "tools": [
+      "codebuilder"
+    ],
+    "tags": [
+      "api"
+    ]
+  },
+  {
+    "id": "ec1be541-a758-416a-baa0-1b48f1da862b",
+    "name": "Paypal API",
+    "description": "I am an expert assistant for the PayPal API, providing access to various features for processing payments, managing transactions, and integrating PayPal services into applications.",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/0ce52b4e-3c5d-4eae-8e80-3d83de5339c9/ec1be541-a758-416a-baa0-1b48f1da862b.png",
+    "welcome": "Hello, I'm your new AI Agent Assistant specialized in PayPal API",
+    "slug": "pay-pal-api",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "api"
+    ]
+  },
+  {
+    "id": "8bd1b4ef-9a9e-4227-96dd-9706e739e020",
+    "name": "Shopify Liquid API",
+    "description": "I'm a Shopify Liquid specialist here to assist you with any questions or tasks related to Shopify Liquid, including template customization, dynamic content creation, and troubleshooting.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/f1658deb-103a-4010-acdc-1ba9e8e969ed/8bd1b4ef-9a9e-4227-96dd-9706e739e020.png",
+    "welcome": "I'm a Shopify Liquid specialist here to assist you with any questions or tasks related to Shopify Liquid, including template customization, dynamic content creation, and troubleshooting.",
+    "slug": "agent-286a21cc",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "api"
+    ]
+  },
+  {
+    "id": "053cf423-d400-4a6c-a2dc-77ba12077dc6",
+    "name": "Twilio API",
+    "description": "Twilio expert assistant providing professional guidance to implement effective and secure cloud communication solutions.",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/3a0c0508-5870-4faf-b631-132b1d8a6ec1/053cf423-d400-4a6c-a2dc-77ba12077dc6.png",
+    "welcome": "Hi! I'm a Twilio API expert assistant. I can help you with SMS, voice calls, video, chat, and other Twilio communication features. Ask me anything about using Twilio's API in your projects!",
+    "slug": "agent-9dd4509c",
+    "tools": [
+      ""
+    ],
+    "tags": [
+      "api"
+    ]
+  },
+  {
+    "id": "0d6faf2e-9628-40dd-82b2-56d837c94bdc",
+    "name": "GPT-4o",
+    "description": "The latest and most powerful OpenAI model",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/0e83fe43-17f4-4494-b130-3797b0145502/0d6faf2e-9628-40dd-82b2-56d837c94bdc.webp",
+    "welcome": "Use OpenAI's latest and most powerful LLM",
+    "slug": "gpt-4o",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "3df8fce7-12c4-451e-9c09-161c33afa871",
+    "name": "Llama 3.2 - 90B Groq",
+    "description": "Limitless knowledge, precise answers. I'm Llama 3.2 - 90B",
+    "image": "https://auth.codegpt.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/3df8fce7-12c4-451e-9c09-161c33afa871.png",
+    "welcome": "Limitless knowledge, precise answers. I'm Llama 3.2 - 90B",
+    "slug": "llama3.1-70b-groq",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "df5730ef-cbc1-418e-9f7f-31fd81d355ee",
+    "name": "Claude 3.5 Sonnet",
+    "description": "Strikes the ideal balance between intelligence and speed",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/664ea16c-f918-4d48-900c-fa728c992b4f/df5730ef-cbc1-418e-9f7f-31fd81d355ee.png",
+    "welcome": "Strikes the ideal balance between intelligence and speed",
+    "slug": "claude-3-sonnet",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "98ae9256-eb31-4c37-b5ab-6e14f64f4be4",
+    "name": "Llama 3.1 - 70b",
+    "description": "Meta Llama3.1 70b \u2013\u00a0The most capable openly available LLM to date",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/98ae9256-eb31-4c37-b5ab-6e14f64f4be4.png",
+    "welcome": "Meta Llama3.1 70b \u2013\u00a0The most capable openly available LLM to date",
+    "slug": "llama3.1-70b",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "f2363bc5-dca1-44bb-a7c4-868b6cfdd2c2",
+    "name": "Mistral Large 2",
+    "description": "Mistral Large 2 is an advanced dense LLM of 123B parameters with state-of-the-art reasoning, knowledge and coding capabilities",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/f2363bc5-dca1-44bb-a7c4-868b6cfdd2c2.png",
+    "welcome": "Powered by Mistral AI",
+    "slug": "mistral-large-2",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "e2d132bf-ffd5-4df8-a0b3-1c8c54a2bb8a",
+    "name": "GPT-4o-mini",
+    "description": "Advancing cost-efficient intelligence",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/0e83fe43-17f4-4494-b130-3797b0145502/0d6faf2e-9628-40dd-82b2-56d837c94bdc.webp",
+    "welcome": "Powered by OpenAI",
+    "slug": "gpt-4o-mini",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "28361026-6f6f-422e-aab8-7ccbbac51404",
+    "name": "Command R+",
+    "description": "Highly scalable LLM that balance high performance",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/664ea16c-f918-4d48-900c-fa728c992b4f/28361026-6f6f-422e-aab8-7ccbbac51404.png",
+    "welcome": "Highly scalable LLM that balance high performance",
+    "slug": "command-r-plus",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "403d73ce-4400-4020-8164-d2bbef542186",
+    "name": "Gemini 1.5 Pro",
+    "description": "Google's next-generation model",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/664ea16c-f918-4d48-900c-fa728c992b4f/7d8298f9-3f0f-47d6-9ed3-36e4e9c13d84.png",
+    "welcome": "Google's next-generation model",
+    "slug": "gemini-pro-1-5",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "4e03f623-c02e-4874-85d3-d7b4437cac98",
+    "name": "Llama 3.1 - 405B",
+    "description": "Llama 3.1 405B is the first openly available model that rivals the top AI models when it comes to state-of-the-art capabilities in general knowledge, steerability, math, tool use, and multilingual translation",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/98ae9256-eb31-4c37-b5ab-6e14f64f4be4.png",
+    "welcome": "Llama 3.1 405B is the first openly available model that rivals the top AI models when it comes to state-of-the-art capabilities in general knowledge, steerability, math, tool use, and multilingual translation",
+    "slug": "llama3.1-405b",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "3456212e-e1a8-4de7-acdb-036e36225867",
+    "name": "GPT-3.5-Turbo",
+    "description": "Powered by gpt-3.5-turbo without a system prompt",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/0e83fe43-17f4-4494-b130-3797b0145502/0d6faf2e-9628-40dd-82b2-56d837c94bdc.webp",
+    "welcome": "Powered by OpenAI",
+    "slug": "agent-cadbca3e",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "ce34cc8b-c171-457f-ac23-8d3b6731c160",
+    "name": "Llama 3.1 - 70B Groq",
+    "description": "Super fast Llama3.1 powered by Groq",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/8a85ec3e-fb5d-4831-afe5-c837ab9ce488/ce34cc8b-c171-457f-ac23-8d3b6731c160.png",
+    "welcome": "Powered by Groq",
+    "slug": "llama3.1-70b-groq",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "403d73ce-4400-4020-8164-d2bbef542186",
+    "name": "Gemini 1.5 Flash",
+    "description": "Google's advanced language model",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/664ea16c-f918-4d48-900c-fa728c992b4f/403d73ce-4400-4020-8164-d2bbef542186.png",
+    "welcome": "Google's next-generation model",
+    "slug": "gemini-pro-1-5",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  },
+  {
+    "id": "ef4d3d6f-844e-4a89-b1e5-01dc7ac24632",
+    "name": "Claude 3 Haiku",
+    "description": "Anthropic's fastest and most affordable model in its intelligence class",
+    "image": "https://rroxuvsrsdbxacokprau.supabase.co/storage/v1/object/public/agents/664ea16c-f918-4d48-900c-fa728c992b4f/ef4d3d6f-844e-4a89-b1e5-01dc7ac24632.png",
+    "welcome": "Anthropic's fastest and most affordable model in its intelligence class",
+    "slug": "claude-3-haiku",
+    "tools": [
+      "code-interpreter",
+      "stackoverflow",
+      "codebuilder"
+    ],
+    "tags": [
+      "llm"
+    ]
+  }
+]
