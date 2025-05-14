@@ -2,6 +2,10 @@
 
 This script evaluates generative language models using predefined tasks and test cases. It utilizes the OpenAI and Anthropic APIs to generate Python code from task descriptions and then evaluates the accuracy of the generated code.
 
+![Screenshot 2025-05-14 at 13 47 48](https://github.com/user-attachments/assets/b3c5aa57-1c88-4505-9cc9-64e37556a4ab)
+
+<img width="1026" alt="Screenshot 2025-05-14 at 13 50 21" src="https://github.com/user-attachments/assets/a797bc75-2a8b-473f-9f14-8c189761657b" />
+
 ## Requirements
 
 - Python 3.7+
