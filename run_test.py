@@ -17,6 +17,8 @@ load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
 anthropic_api_key = os.getenv('ANTHROPIC_API_KEY')
 mistral_api_key = os.getenv('MISTRAL_API_KEY')
+cohere_api_key = os.getenv('COHERE_API_KEY')
+gemini_api_key = os.getenv('GEMINI_API_KEY')
 
 # Initialize Anthropic client
 anthropic_client = Anthropic(api_key=anthropic_api_key)
@@ -26,13 +28,6 @@ mistral_client = Mistral(api_key=mistral_api_key)
 
 # Models to test
 MODELS = [
-    "o1-preview",
-    "o1-mini",
-    "gpt-4o-mini",
-    "gpt-4o",
-    "gpt-4",
-    "gpt-3.5-turbo",
-    "claude-3-5-sonnet-20240620",
     "codestral-latest",
     "codestral-mamba-latest"
 ]

@@ -1,4 +1,5 @@
 openai 
-anthropic 
+anthropic
+mistralai 
 python-dotenv
 streamlit

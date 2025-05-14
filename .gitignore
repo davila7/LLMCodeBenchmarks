@@ -1,7 +1,3 @@
 .env
 results/result_eval_*.json
 .venv/*
-node_modules
-
-.codegpt
-.csv
