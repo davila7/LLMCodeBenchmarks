@@ -1,6 +1,6 @@
 # LLM Code Benchmarks
 
-This script evaluates generative language models using predefined tasks and test cases. It utilizes the OpenAI and Anthropic APIs to generate Python code from task descriptions and then evaluates the accuracy of the generated code.
+This script evaluates generative language models using predefined tasks and test cases. It utilizes the OpenAI, Anthropic and Mistral API to generate Python code from task descriptions and then evaluates the accuracy of the generated code.
 
 ## Run the test
 Run the test and see how the models perform on the given tasks.
