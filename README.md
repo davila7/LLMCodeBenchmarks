@@ -8,7 +8,12 @@ Run the test and see how the models perform on the given tasks.
 
 # Result panel
 Run the streamlit app to see the results of the models on the given tasks.
+
+<img width="1328" alt="Screenshot 2025-05-14 at 13 57 03" src="https://github.com/user-attachments/assets/a3b1cf46-d52d-4f3d-90ab-a246dd30e46a" />
+
 <img width="1026" alt="Screenshot 2025-05-14 at 13 50 21" src="https://github.com/user-attachments/assets/a797bc75-2a8b-473f-9f14-8c189761657b" />
+
+<img width="621" alt="Screenshot 2025-05-14 at 13 55 57" src="https://github.com/user-attachments/assets/9caf64e7-3eb1-4538-a37b-ee9b3baac81e" />
 
 ## Requirements
 
