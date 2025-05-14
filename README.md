@@ -20,12 +20,13 @@ Run the streamlit app to see the results of the models on the given tasks.
 1. Clone the repository.
 2. Install the required packages:
     ```bash
-    pip install openai anthropic python-dotenv
+    pip install -r requirements.txt
     ```
 3. Create a `.env` file in the project's root directory with your API keys:
     ```
     OPENAI_API_KEY=your_openai_key
     ANTHROPIC_API_KEY=your_anthropic_key
+    MISTRAL_API_KEY=your_mistral_key
     ```
 
 ## Usage
