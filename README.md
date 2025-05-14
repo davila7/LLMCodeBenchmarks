@@ -2,14 +2,18 @@
 
 This script evaluates generative language models using predefined tasks and test cases. It utilizes the OpenAI and Anthropic APIs to generate Python code from task descriptions and then evaluates the accuracy of the generated code.
 
+## Run the test
+Run the test and see how the models perform on the given tasks.
 ![Screenshot 2025-05-14 at 13 47 48](https://github.com/user-attachments/assets/b3c5aa57-1c88-4505-9cc9-64e37556a4ab)
 
+# Result panel
+Run the streamlit app to see the results of the models on the given tasks.
 <img width="1026" alt="Screenshot 2025-05-14 at 13 50 21" src="https://github.com/user-attachments/assets/a797bc75-2a8b-473f-9f14-8c189761657b" />
 
 ## Requirements
 
 - Python 3.7+
-- Packages: `openai`, `anthropic`, `streamlit`, `python-dotenv`
+- Packages: `openai`, `anthropic`, `mistralai`, `streamlit`, `python-dotenv`
 
 ## Installation
 
@@ -52,12 +56,6 @@ The evaluation results are saved in a JSON file in the `results` directory with 
 
 Run: `streamlit run results.py` to visualize the results dashbord.
 
-
-## Example
-
-```bash
-python run_test.py
-```
 
 License
 This project is licensed under the MIT License.
