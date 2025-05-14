@@ -47,6 +47,7 @@ def display_as_table(data):
                 'Model': model,
                 'Description': task.get('description', ''),
                 'Generated Code': task.get('generated_code', ''),
+                'Semantic Equivalence': task.get('semantic_equivalence', ''),
                 'Success': task.get('success', ''),
                 'Message': task.get('message', ''),
                 'Execution Time': task.get('execution_time', ''),

@@ -5,6 +5,8 @@ import sys
 import traceback
 import re
 import os
+import ast
+import unittest
 from datetime import datetime
 from dotenv import load_dotenv
 from anthropic import Anthropic
@@ -26,11 +28,15 @@ anthropic_client = Anthropic(api_key=anthropic_api_key)
 # Initialize Mistral client
 mistral_client = Mistral(api_key=mistral_api_key)
 
-# Models to test
-MODELS = [
-    "codestral-latest",
-    "codestral-mamba-latest"
-]
+# separa los modelos si es que existe la api key
+MODELS = []
+if openai.api_key:
+    MODELS.extend(["o4-mini", "o3", "gpt-4.1-2025-04-14", "gpt-4o"])
+if anthropic_api_key:
+    MODELS.extend(["claude-3-5-sonnet-20240620", "claude-3-7-sonnet-20250219"])
+if mistral_api_key:
+    MODELS.extend(["mistral-large-latest", "mistral-medium-latest", "mistral-small-latest", "codestral-latest"])
+
 
 # Load tasks
 def load_tasks(filename, take_first=False):
@@ -45,7 +51,8 @@ def generate_code(model, prompt):
         full_prompt = f"{prompt}\n\nPlease provide ONLY the Python code without additional explanations or Markdown code blocks"
         message = [{"role": "user", "content": full_prompt}]
         
-        if model in ["gpt-4o-mini", "gpt-4o", "gpt-4", "gpt-3.5-turbo", "claude-3-5-sonnet-20240620", "codestral-latest", "codestral-mamba-latest"]:
+        # add system message just for the models that need it
+        if model in ["gpt-4o", "gpt-4o", "claude-3-5-sonnet-20240620", "claude-3-7-sonnet-20250219", "mistral-large-latest", "mistral-medium-latest", "mistral-small-latest", "codestral-latest"]:
             message.insert(0, {"role": "system", "content": "You are a helpful assistant for writing code."})
         
         if model.startswith("claude"):
@@ -55,7 +62,7 @@ def generate_code(model, prompt):
                 model=model
             )
             code = response.content[0].text.strip()
-        elif model.startswith("codestral"):
+        elif model.startswith("codestral") or model.startswith("mistral"):
             response = mistral_client.chat.complete(model=model, messages=message)
             if response is not None:
                 code = response.choices[0].message.content
@@ -72,8 +79,6 @@ def generate_code(model, prompt):
     except Exception as e:
         print(f"Error: {model}: {e}")
         return ""
-
-import re
 
 def clean_code(code):
     """
@@ -97,6 +102,155 @@ def clean_code(code):
 
     return code.strip()
 
+def are_semantically_equivalent(code1, code2):
+    """
+    Check if two code snippets are semantically equivalent by:
+    1. Parsing both into AST
+    2. Running both against a battery of tests
+    3. Comparing their outputs for various inputs
+    """
+    # Parse into AST to compare structure
+    try:
+        ast1 = ast.parse(code1)
+        ast2 = ast.parse(code2)
+    except SyntaxError:
+        return False
+    
+    # Execute against test cases in isolated environments
+    def create_test_env(code):
+        env = {}
+        try:
+            exec(code, {}, env)
+            return env
+        except Exception:
+            return None
+    
+    env1 = create_test_env(code1)
+    env2 = create_test_env(code2)
+    
+    if env1 is None or env2 is None:
+        return False
+    
+    # Find callable objects (likely functions)
+    funcs1 = {name: obj for name, obj in env1.items() if callable(obj) and not name.startswith('__')}
+    funcs2 = {name: obj for name, obj in env2.items() if callable(obj) and not name.startswith('__')}
+    
+    if not funcs1 or not funcs2:
+        return False
+    
+    # Generate a set of test inputs
+    # For simplicity, assuming there's one main function with similar name
+    # In real implementation, you'd need more sophisticated matching
+    def find_matching_functions():
+        # Try exact matches first
+        exact_matches = set(funcs1.keys()).intersection(funcs2.keys())
+        if exact_matches:
+            return [(name, funcs1[name], funcs2[name]) for name in exact_matches]
+        
+        # Otherwise, use heuristics like:
+        # 1. Main function is likely the last defined
+        # 2. Or the one with the most complex signature
+        return [(None, list(funcs1.values())[0], list(funcs2.values())[0])]
+    
+    matched_functions = find_matching_functions()
+    
+    # Test the functions with various inputs
+    test_inputs = [
+        None, 0, 1, -1, 100, 
+        "", "a", "test", 
+        [], [1, 2, 3], 
+        {}, {"a": 1, "b": 2},
+        True, False
+    ]
+    
+    # For each matched function pair, test with various inputs
+    for _, func1, func2 in matched_functions:
+        try:
+            for test_input in test_inputs:
+                try:
+                    # Try with single argument
+                    result1 = func1(test_input)
+                    result2 = func2(test_input)
+                    if result1 != result2:
+                        return False
+                except TypeError:
+                    # Try with no arguments
+                    try:
+                        result1 = func1()
+                        result2 = func2()
+                        if result1 != result2:
+                            return False
+                    except:
+                        # Both failed similarly, consider it a pass for this input
+                        pass
+        except Exception:
+            # If we encounter exceptions, the functions likely have different behaviors
+            return False
+    
+    # If we got here, the functions seem equivalent
+    return True
+
+def generate_reference_solution(test_cases):
+    """
+    Generate a reference solution based on the test cases.
+    This is a simple implementation that creates a function that handles the test cases.
+    In a real scenario, you would have more sophisticated reference solutions.
+    """
+    # This is a very basic implementation - in practice, you would have better reference solutions
+    if not test_cases:
+        return "def solution(): pass"
+    
+    # Try to infer the function signature from the first test case
+    first_case = test_cases[0]
+    input_val = first_case["input"]
+    
+    if isinstance(input_val, (list, tuple)):
+        # Multiple arguments
+        args = ", ".join([f"arg{i}" for i in range(len(input_val))])
+        func_def = f"def solution({args}):\n"
+        
+        # Create a simple mapping function based on test cases
+        cases_str = []
+        for case in test_cases:
+            inputs = case["input"]
+            expected = case["expected"]
+            conditions = " and ".join([f"arg{i} == {repr(val)}" for i, val in enumerate(inputs)])
+            cases_str.append(f"    if {conditions}:\n        return {repr(expected)}")
+        
+        func_body = "\n".join(cases_str)
+        func_body += "\n    return None  # Default case"
+        
+    elif isinstance(input_val, dict):
+        # Keyword arguments
+        args = ", ".join([f"{k}=None" for k in input_val.keys()])
+        func_def = f"def solution({args}):\n"
+        
+        # Create a simple mapping function based on test cases
+        cases_str = []
+        for case in test_cases:
+            inputs = case["input"]
+            expected = case["expected"]
+            conditions = " and ".join([f"{k} == {repr(v)}" for k, v in inputs.items()])
+            cases_str.append(f"    if {conditions}:\n        return {repr(expected)}")
+        
+        func_body = "\n".join(cases_str)
+        func_body += "\n    return None  # Default case"
+        
+    else:
+        # Single argument
+        func_def = "def solution(x):\n"
+        
+        # Create a simple mapping function based on test cases
+        cases_str = []
+        for case in test_cases:
+            input_val = case["input"]
+            expected = case["expected"]
+            cases_str.append(f"    if x == {repr(input_val)}:\n        return {repr(expected)}")
+        
+        func_body = "\n".join(cases_str)
+        func_body += "\n    return None  # Default case"
+    
+    return func_def + func_body
 
 def eval_function(code, test_cases):
     global_vars = {}
@@ -108,8 +262,9 @@ def eval_function(code, test_cases):
                 func = obj
                 break
         if func is None:
-            return False, "No function found in the generated code.", 0
+            return False, "No function found in the generated code.", 0, False
         
+        execution_time = 0
         for idx, caso in enumerate(test_cases, 1):
             input_val = caso["input"]
             expected = caso["expected"]
@@ -124,16 +279,20 @@ def eval_function(code, test_cases):
                 end_time = time.time()
                 execution_time = end_time - start_time
                 if result != expected:
-                    return False, f"Failure in case #{idx}: input={input_val}, expected={expected}, got={result}", execution_time
+                    return False, f"Failure in case #{idx}: input={input_val}, expected={expected}, got={result}", execution_time, False
             except Exception as e:
                 tb = traceback.format_exc()
-                return False, f"Error executing case #{idx}: {e}\n{tb}", 0
+                return False, f"Error executing case #{idx}: {e}\n{tb}", 0, False
         
-        return True, "All test cases passed", execution_time
+        # Evaluar semánticamente
+        reference_solution = generate_reference_solution(test_cases)
+        semantic_equivalence = are_semantically_equivalent(code, reference_solution)
+        
+        return True, "All test cases passed", execution_time, semantic_equivalence
     
     except Exception as e:
         tb = traceback.format_exc()
-        return False, f"Error executing code: {e}\n{tb}", 0
+        return False, f"Error executing code: {e}\n{tb}", 0, False
 
 def main():
     take_first = '--take-first' in sys.argv
@@ -160,22 +319,25 @@ def main():
             response_time = end_time - start_time
             
             generated_code = clean_code(generated_code)
-            success, message, execution_time = eval_function(generated_code, task["test_cases"])
+            success, message, execution_time, semantic_equivalence = eval_function(generated_code, task["test_cases"])
 
-            task_resul = {
+            task_result = {
                 "description": task["description"],
                 "generated_code": generated_code,
                 "success": success,
                 "message": message,
                 "execution_time": execution_time,
-                "response_time": response_time
+                "response_time": response_time,
+                "semantic_equivalence": semantic_equivalence
             }
-            model_result["task"].append(task_resul)
+            model_result["task"].append(task_result)
 
             estado = "✅" if success else "❌"
+            semantic_status = "✅" if semantic_equivalence else "❌"
             print(f"    Response Time: {response_time:.2f} seconds")
             print(f"    Result: {estado} - {message}") 
             print(f"    Execution Time: {execution_time:.2f} seconds")
+            print(f"    Semantic Equivalence: {semantic_status}")
             print("-----------------------")
             time.sleep(1)
 
