@@ -46,12 +46,20 @@ def display_as_table(data):
             rows.append({
                 'Model': model,
                 'Description': task.get('description', ''),
+                'Test_cases': task.get('test_cases', ''),
                 'Generated Code': task.get('generated_code', ''),
-                'Semantic Equivalence': task.get('semantic_equivalence', ''),
-                'Success': task.get('success', ''),
-                'Message': task.get('message', ''),
                 'Execution Time': task.get('execution_time', ''),
-                'Response Time': task.get('response_time', '')
+                'Response Time': task.get('response_time', ''),
+                'Execution Success Status': task.get('success', ''),
+                'Execution Message': task.get('message', ''),
+                'Behavioral Similarity': task.get('semantic_metrics', {}).get('behavioral_similarity', ''),
+                'Structural Similarity': task.get('semantic_metrics', {}).get('structural_similarity', ''),
+                'Function Match Score': task.get('semantic_metrics', {}).get('function_match_score', ''),
+                'Overall Score': task.get('semantic_metrics', {}).get('overall_score', ''),
+                'Test Cases Passed': task.get('semantic_metrics', {}).get('test_cases_passed', ''),
+                'Total Test Cases': task.get('semantic_metrics', {}).get('total_test_cases', ''),
+                'Semantic Equivalence': task.get('semantic_equivalence', ''),
+                'Semantic Status': task.get('semantic_status', '')
             })
     df = pd.DataFrame(rows)
     return df
@@ -73,7 +81,7 @@ def main():
         data = load_json_file(filepath)
         df = display_as_table(data)
         
-        grouped_df = df.groupby(['Model', 'Success']).size().unstack(fill_value=0)
+        grouped_df = df.groupby(['Model', 'Execution Success Status']).size().unstack(fill_value=0)
         
         tab1, tab2 = st.tabs(["Charts", "Results"])
 

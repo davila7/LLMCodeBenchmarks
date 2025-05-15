@@ -30,10 +30,10 @@ mistral_client = Mistral(api_key=mistral_api_key)
 
 # separa los modelos si es que existe la api key
 MODELS = []
-if openai.api_key:
-    MODELS.extend(["o4-mini", "o3", "gpt-4.1-2025-04-14", "gpt-4o"])
-if anthropic_api_key:
-    MODELS.extend(["claude-3-5-sonnet-20240620", "claude-3-7-sonnet-20250219"])
+# if openai.api_key:
+#     MODELS.extend(["o4-mini", "o3", "gpt-4.1-2025-04-14", "gpt-4o"])
+# if anthropic_api_key:
+#     MODELS.extend(["claude-3-5-sonnet-20240620", "claude-3-7-sonnet-20250219"])
 if mistral_api_key:
     MODELS.extend(["mistral-large-latest", "mistral-medium-latest", "mistral-small-latest", "codestral-latest"])
 
@@ -104,17 +104,37 @@ def clean_code(code):
 
 def are_semantically_equivalent(code1, code2):
     """
-    Check if two code snippets are semantically equivalent by:
-    1. Parsing both into AST
-    2. Running both against a battery of tests
-    3. Comparing their outputs for various inputs
+    Check if two code snippets are semantically equivalent and return detailed metrics.
+    
+    Returns:
+        tuple: (is_equivalent, similarity_data)
+            - is_equivalent (bool): True if codes are semantically equivalent
+            - similarity_data (dict): Detailed metrics about the similarity
     """
+    similarity_data = {
+        "structural_similarity": 0.0,  # 0-1 score for AST structure similarity
+        "behavioral_similarity": 0.0,  # 0-1 score for runtime behavior similarity
+        "function_match_score": 0.0,   # 0-1 score for function signature matching
+        "test_cases_passed": 0,        # Number of test cases with identical behavior
+        "total_test_cases": 0,         # Total number of test cases tried
+        "differences": [],             # List of notable differences
+        "overall_score": 0.0           # Weighted average of all metrics
+    }
+    
     # Parse into AST to compare structure
     try:
         ast1 = ast.parse(code1)
         ast2 = ast.parse(code2)
-    except SyntaxError:
-        return False
+    except SyntaxError as e:
+        similarity_data["differences"].append(f"Syntax error: {str(e)}")
+        similarity_data["overall_score"] = 0.0
+        return False, similarity_data
+    
+    # Compare AST structures
+    structural_score, ast_details = compare_ast_structures_with_score(ast1, ast2)
+    similarity_data["structural_similarity"] = structural_score
+    if ast_details.get("differences"):
+        similarity_data["differences"].extend(ast_details["differences"])
     
     # Execute against test cases in isolated environments
     def create_test_env(code):
@@ -122,39 +142,32 @@ def are_semantically_equivalent(code1, code2):
         try:
             exec(code, {}, env)
             return env
-        except Exception:
+        except Exception as e:
+            similarity_data["differences"].append(f"Execution error: {str(e)}")
             return None
     
     env1 = create_test_env(code1)
     env2 = create_test_env(code2)
     
     if env1 is None or env2 is None:
-        return False
+        similarity_data["overall_score"] = structural_score * 0.5  # Only structure counts
+        return False, similarity_data
     
     # Find callable objects (likely functions)
     funcs1 = {name: obj for name, obj in env1.items() if callable(obj) and not name.startswith('__')}
     funcs2 = {name: obj for name, obj in env2.items() if callable(obj) and not name.startswith('__')}
     
     if not funcs1 or not funcs2:
-        return False
+        similarity_data["differences"].append("One or both code snippets don't define any functions")
+        similarity_data["overall_score"] = structural_score * 0.5
+        return False, similarity_data
+    
+    # Calculate function match score
+    common_names = set(funcs1.keys()).intersection(set(funcs2.keys()))
+    function_match_score = len(common_names) / max(len(funcs1), len(funcs2))
+    similarity_data["function_match_score"] = function_match_score
     
     # Generate a set of test inputs
-    # For simplicity, assuming there's one main function with similar name
-    # In real implementation, you'd need more sophisticated matching
-    def find_matching_functions():
-        # Try exact matches first
-        exact_matches = set(funcs1.keys()).intersection(funcs2.keys())
-        if exact_matches:
-            return [(name, funcs1[name], funcs2[name]) for name in exact_matches]
-        
-        # Otherwise, use heuristics like:
-        # 1. Main function is likely the last defined
-        # 2. Or the one with the most complex signature
-        return [(None, list(funcs1.values())[0], list(funcs2.values())[0])]
-    
-    matched_functions = find_matching_functions()
-    
-    # Test the functions with various inputs
     test_inputs = [
         None, 0, 1, -1, 100, 
         "", "a", "test", 
@@ -163,32 +176,388 @@ def are_semantically_equivalent(code1, code2):
         True, False
     ]
     
-    # For each matched function pair, test with various inputs
-    for _, func1, func2 in matched_functions:
-        try:
-            for test_input in test_inputs:
+    # Find matching functions
+    def find_matching_functions():
+        # Try exact matches first
+        exact_matches = [(name, funcs1[name], funcs2[name]) for name in common_names]
+        
+        # If no exact matches, try to match by position
+        if not exact_matches and funcs1 and funcs2:
+            exact_matches = [(None, list(funcs1.values())[0], list(funcs2.values())[0])]
+            
+        return exact_matches
+    
+    matched_functions = find_matching_functions()
+    
+    # Test behavioral similarity
+    test_cases_passed = 0
+    total_test_cases = 0
+    
+    for name, func1, func2 in matched_functions:
+        func_name = name if name else "anonymous_function"
+        
+        for test_input in test_inputs:
+            total_test_cases += 1
+            try:
+                # Try with single argument
+                result1 = func1(test_input)
                 try:
-                    # Try with single argument
-                    result1 = func1(test_input)
                     result2 = func2(test_input)
-                    if result1 != result2:
-                        return False
-                except TypeError:
-                    # Try with no arguments
+                    if result1 == result2:
+                        test_cases_passed += 1
+                    else:
+                        similarity_data["differences"].append(
+                            f"Function '{func_name}' returns different results for input {repr(test_input)}: "
+                            f"{repr(result1)} vs {repr(result2)}"
+                        )
+                except Exception:
+                    similarity_data["differences"].append(
+                        f"Function '{func_name}' in second code fails for input {repr(test_input)}"
+                    )
+            except TypeError:
+                # Try with no arguments
+                try:
+                    result1 = func1()
                     try:
-                        result1 = func1()
                         result2 = func2()
-                        if result1 != result2:
-                            return False
-                    except:
-                        # Both failed similarly, consider it a pass for this input
+                        if result1 == result2:
+                            test_cases_passed += 1
+                        else:
+                            similarity_data["differences"].append(
+                                f"Function '{func_name}' returns different results with no args: "
+                                f"{repr(result1)} vs {repr(result2)}"
+                            )
+                    except Exception:
+                        # Both failed, but differently
                         pass
-        except Exception:
-            # If we encounter exceptions, the functions likely have different behaviors
+                except Exception:
+                    # Both failed with TypeError, consider it a pass
+                    test_cases_passed += 1
+            except Exception:
+                # Skip this test case
+                total_test_cases -= 1
+    
+    # Calculate behavioral similarity
+    behavioral_similarity = test_cases_passed / total_test_cases if total_test_cases > 0 else 0.0
+    similarity_data["behavioral_similarity"] = behavioral_similarity
+    similarity_data["test_cases_passed"] = test_cases_passed
+    similarity_data["total_test_cases"] = total_test_cases
+    
+    # Calculate overall score (weighted average)
+    similarity_data["overall_score"] = (
+        structural_score * 0.4 +
+        behavioral_similarity * 0.5 +
+        function_match_score * 0.1
+    )
+    
+    # Determine if they are semantically equivalent
+    # You can adjust the threshold as needed
+    # Examples:
+    # - 0.95 for strict equivalence
+    # - 0.85 for relaxed equivalence
+    # - 0.75 for loose 
+    # - 0.65 for very 
+    # - 0.55 for very loose equivalence
+    is_equivalent = similarity_data["overall_score"] > 0.75  # Threshold for equivalence
+    
+    return is_equivalent, similarity_data
+
+def compare_ast_structures_with_score(ast1, ast2):
+    """
+    Compare two AST structures and return a similarity score and details.
+    
+    Returns:
+        tuple: (similarity_score, details)
+            - similarity_score (float): 0-1 score of structural similarity
+            - details (dict): Additional information about the comparison
+    """
+    details = {"differences": []}
+    
+    # Get the main function definitions from both ASTs
+    funcs1 = [node for node in ast1.body if isinstance(node, ast.FunctionDef)]
+    funcs2 = [node for node in ast2.body if isinstance(node, ast.FunctionDef)]
+    
+    # If number of functions differs significantly
+    if abs(len(funcs1) - len(funcs2)) > 1:
+        details["differences"].append(
+            f"Different number of functions: {len(funcs1)} vs {len(funcs2)}"
+        )
+    
+    # If no functions found, compare the entire body
+    if not funcs1 and not funcs2:
+        node_similarity, node_details = compare_ast_nodes_with_score(ast1.body, ast2.body)
+        if node_details.get("differences"):
+            details["differences"].extend(node_details["differences"])
+        return node_similarity, details
+    
+    # Try to match functions by name
+    matched_pairs = []
+    unmatched1 = []
+    unmatched2 = list(funcs2)
+    
+    for func1 in funcs1:
+        matched = False
+        for i, func2 in enumerate(unmatched2):
+            if func1.name == func2.name:
+                matched_pairs.append((func1, func2))
+                unmatched2.pop(i)
+                matched = True
+                break
+        if not matched:
+            unmatched1.append(func1)
+    
+    # If there are unmatched functions, try to match them by position
+    if unmatched1 and unmatched2 and len(unmatched1) == len(unmatched2):
+        for i in range(len(unmatched1)):
+            matched_pairs.append((unmatched1[i], unmatched2[i]))
+        unmatched1 = []
+        unmatched2 = []
+    
+    # Calculate function match score
+    total_funcs = max(len(funcs1), len(funcs2))
+    matched_funcs = len(matched_pairs)
+    function_match_ratio = matched_funcs / total_funcs if total_funcs > 0 else 1.0
+    
+    # Record unmatched functions
+    for func in unmatched1:
+        details["differences"].append(f"Function '{func.name}' only in first code")
+    for func in unmatched2:
+        details["differences"].append(f"Function '{func.name}' only in second code")
+    
+    # Compare each matched pair
+    similarity_scores = []
+    
+    for func1, func2 in matched_pairs:
+        # Compare function signatures
+        sig_similarity, sig_details = compare_function_signatures_with_score(func1, func2)
+        if sig_details.get("differences"):
+            details["differences"].extend(sig_details["differences"])
+        
+        # Compare function bodies
+        body_similarity, body_details = compare_ast_nodes_with_score(func1.body, func2.body)
+        if body_details.get("differences"):
+            details["differences"].extend(body_details["differences"])
+        
+        # Combined similarity for this function pair
+        func_similarity = (sig_similarity * 0.3) + (body_similarity * 0.7)
+        similarity_scores.append(func_similarity)
+    
+    # Calculate overall structural similarity
+    if similarity_scores:
+        # Weight by function match ratio
+        structure_similarity = (sum(similarity_scores) / len(similarity_scores)) * function_match_ratio
+    else:
+        structure_similarity = 0.0
+    
+    return structure_similarity, details
+
+def compare_function_signatures_with_score(func1, func2):
+    """Compare function signatures and return a similarity score"""
+    details = {"differences": []}
+    
+    # Compare argument counts
+    args1 = func1.args
+    args2 = func2.args
+    
+    # Basic parameter count comparison
+    if len(args1.args) != len(args2.args):
+        details["differences"].append(
+            f"Function '{func1.name}' has different parameter count: "
+            f"{len(args1.args)} vs {len(args2.args)}"
+        )
+        param_similarity = min(len(args1.args), len(args2.args)) / max(len(args1.args), len(args2.args)) if max(len(args1.args), len(args2.args)) > 0 else 1.0
+    else:
+        param_similarity = 1.0
+    
+    # More detailed signature comparison could be added here
+    
+    return param_similarity, details
+
+def compare_ast_nodes_with_score(nodes1, nodes2):
+    """
+    Compare two lists of AST nodes and return a similarity score.
+    """
+    details = {"differences": []}
+    
+    # If lengths differ significantly
+    if abs(len(nodes1) - len(nodes2)) > 2:
+        details["differences"].append(f"Different node count: {len(nodes1)} vs {len(nodes2)}")
+    
+    # Normalize and classify nodes
+    def classify_node(node):
+        if isinstance(node, ast.Assign):
+            return "assignment"
+        elif isinstance(node, (ast.If, ast.IfExp)):
+            return "conditional"
+        elif isinstance(node, (ast.For, ast.While)):
+            return "loop"
+        elif isinstance(node, ast.Return):
+            return "return"
+        elif isinstance(node, ast.Expr):
+            return "expression"
+        else:
+            return type(node).__name__
+    
+    # Count node types in both bodies
+    counts1 = {}
+    counts2 = {}
+    
+    for node in nodes1:
+        node_type = classify_node(node)
+        counts1[node_type] = counts1.get(node_type, 0) + 1
+    
+    for node in nodes2:
+        node_type = classify_node(node)
+        counts2[node_type] = counts2.get(node_type, 0) + 1
+    
+    # Compare counts of different node types
+    all_node_types = set(counts1.keys()) | set(counts2.keys())
+    type_similarities = []
+    
+    for node_type in all_node_types:
+        count1 = counts1.get(node_type, 0)
+        count2 = counts2.get(node_type, 0)
+        
+        # Calculate similarity for this node type
+        if max(count1, count2) > 0:
+            type_similarity = min(count1, count2) / max(count1, count2)
+        else:
+            type_similarity = 1.0
+        
+        # Record significant differences
+        if abs(count1 - count2) > 1:
+            # Special case for assignments
+            if node_type == "assignment" and abs(count1 - count2) <= 3:
+                type_similarity = 0.8  # Minor penalty
+            else:
+                details["differences"].append(
+                    f"Different number of {node_type} nodes: {count1} vs {count2}"
+                )
+        
+        type_similarities.append(type_similarity)
+    
+    # Calculate overall node similarity
+    if type_similarities:
+        node_similarity = sum(type_similarities) / len(type_similarities)
+    else:
+        node_similarity = 0.0
+    
+    return node_similarity, details
+
+
+def compare_ast_structures(ast1, ast2):
+    """
+    Compare two AST structures for semantic equivalence.
+    Returns True if the structures are semantically equivalent, False otherwise.
+    """
+    # Get the main function definitions from both ASTs
+    funcs1 = [node for node in ast1.body if isinstance(node, ast.FunctionDef)]
+    funcs2 = [node for node in ast2.body if isinstance(node, ast.FunctionDef)]
+    
+    # If number of functions differs significantly, they're likely not equivalent
+    if abs(len(funcs1) - len(funcs2)) > 1:
+        return False
+    
+    # If no functions found, compare the entire body
+    if not funcs1 and not funcs2:
+        return compare_ast_nodes(ast1.body, ast2.body)
+    
+    # Try to match functions by name
+    matched_pairs = []
+    for func1 in funcs1:
+        for func2 in funcs2:
+            if func1.name == func2.name:
+                matched_pairs.append((func1, func2))
+                break
+    
+    # If no matches by name, try to match the "main" functions
+    # (assuming the first/only function is the main one)
+    if not matched_pairs and funcs1 and funcs2:
+        matched_pairs = [(funcs1[0], funcs2[0])]
+    
+    # Compare each matched pair
+    for func1, func2 in matched_pairs:
+        # Compare function signatures
+        if not compare_function_signatures(func1, func2):
+            return False
+        
+        # Compare function bodies
+        if not compare_ast_nodes(func1.body, func2.body):
             return False
     
-    # If we got here, the functions seem equivalent
     return True
+
+def compare_function_signatures(func1, func2):
+    """Compare function signatures for compatibility"""
+    # Compare argument counts
+    args1 = func1.args
+    args2 = func2.args
+    
+    # Check if both have similar parameter structure
+    # This is a simplified check - a more thorough one would look at defaults, etc.
+    if len(args1.args) != len(args2.args):
+        return False
+    
+    # Check if both have similar return structure
+    # This would require type inference which is complex
+    # For now, we'll skip this check
+    
+    return True
+
+def compare_ast_nodes(nodes1, nodes2):
+    """
+    Compare two lists of AST nodes for semantic equivalence.
+    This is a simplified version that checks for structural similarity.
+    """
+    # If lengths differ significantly, they're likely not equivalent
+    if abs(len(nodes1) - len(nodes2)) > 2:  # Allow some flexibility
+        return False
+    
+    # Normalize and classify nodes
+    def classify_node(node):
+        if isinstance(node, ast.Assign):
+            return "assignment"
+        elif isinstance(node, (ast.If, ast.IfExp)):
+            return "conditional"
+        elif isinstance(node, (ast.For, ast.While)):
+            return "loop"
+        elif isinstance(node, ast.Return):
+            return "return"
+        elif isinstance(node, ast.Expr):
+            return "expression"
+        else:
+            return type(node).__name__
+    
+    # Count node types in both bodies
+    counts1 = {}
+    counts2 = {}
+    
+    for node in nodes1:
+        node_type = classify_node(node)
+        counts1[node_type] = counts1.get(node_type, 0) + 1
+    
+    for node in nodes2:
+        node_type = classify_node(node)
+        counts2[node_type] = counts2.get(node_type, 0) + 1
+    
+    # Compare counts of different node types
+    # Allow some flexibility - functions might be implemented differently
+    # but still be semantically equivalent
+    for node_type in set(counts1.keys()) | set(counts2.keys()):
+        count1 = counts1.get(node_type, 0)
+        count2 = counts2.get(node_type, 0)
+        
+        # If counts differ significantly, they're likely not equivalent
+        if abs(count1 - count2) > 1:  # Allow some flexibility
+            # Special case: assignments might be combined or split
+            if node_type == "assignment" and abs(count1 - count2) <= 3:
+                continue
+            return False
+    
+    # If we get here, the structures are similar enough
+    # that they might be semantically equivalent
+    return True
+
 
 def generate_reference_solution(test_cases):
     """
@@ -262,7 +631,7 @@ def eval_function(code, test_cases):
                 func = obj
                 break
         if func is None:
-            return False, "No function found in the generated code.", 0, False
+            return False, "No function found in the generated code.", 0, False, {}
         
         execution_time = 0
         for idx, caso in enumerate(test_cases, 1):
@@ -279,20 +648,20 @@ def eval_function(code, test_cases):
                 end_time = time.time()
                 execution_time = end_time - start_time
                 if result != expected:
-                    return False, f"Failure in case #{idx}: input={input_val}, expected={expected}, got={result}", execution_time, False
+                    return False, f"Failure in case #{idx}: input={input_val}, expected={expected}, got={result}", execution_time, False, {}
             except Exception as e:
                 tb = traceback.format_exc()
-                return False, f"Error executing case #{idx}: {e}\n{tb}", 0, False
+                return False, f"Error executing case #{idx}: {e}\n{tb}", 0, False, {}
         
         # Evaluar semánticamente
         reference_solution = generate_reference_solution(test_cases)
-        semantic_equivalence = are_semantically_equivalent(code, reference_solution)
+        is_equivalent, semantic_data = are_semantically_equivalent(code, reference_solution)
         
-        return True, "All test cases passed", execution_time, semantic_equivalence
+        return True, "All test cases passed", execution_time, is_equivalent, semantic_data
     
     except Exception as e:
         tb = traceback.format_exc()
-        return False, f"Error executing code: {e}\n{tb}", 0, False
+        return False, f"Error executing code: {e}\n{tb}", 0, False, {}
 
 def main():
     take_first = '--take-first' in sys.argv
@@ -319,24 +688,34 @@ def main():
             response_time = end_time - start_time
             
             generated_code = clean_code(generated_code)
-            success, message, execution_time, semantic_equivalence = eval_function(generated_code, task["test_cases"])
-
+            success, message, execution_time, semantic_equivalence, semantic_data = eval_function(generated_code, task["test_cases"])
+            estado = "✅" if success else "❌"
+            semantic_status = "✅" if semantic_equivalence else "❌"
+            
             task_result = {
                 "description": task["description"],
+                "test_cases": task["test_cases"],
                 "generated_code": generated_code,
                 "success": success,
                 "message": message,
                 "execution_time": execution_time,
                 "response_time": response_time,
-                "semantic_equivalence": semantic_equivalence
+                "semantic_equivalence": semantic_equivalence,
+                "semantic_metrics": semantic_data,
+                "semantic_status": semantic_status,
             }
             model_result["task"].append(task_result)
 
-            estado = "✅" if success else "❌"
-            semantic_status = "✅" if semantic_equivalence else "❌"
             print(f"    Response Time: {response_time:.2f} seconds")
-            print(f"    Result: {estado} - {message}") 
             print(f"    Execution Time: {execution_time:.2f} seconds")
+            print(f"    Result: {estado} - {message}") 
+            print("Semantic Analysis:")
+            print(f"    Behavioral Similarity: {semantic_data['behavioral_similarity']}")
+            print(f"    Structural Similarity: {semantic_data['structural_similarity']}")
+            print(f"    Function Match Score: {semantic_data['function_match_score']}")
+            print(f"    Overall Score: {semantic_data['overall_score']}")
+            print(f"    Test Cases Passed: {semantic_data['test_cases_passed']}")
+            print(f"    Total Test Cases: {semantic_data['total_test_cases']}")
             print(f"    Semantic Equivalence: {semantic_status}")
             print("-----------------------")
             time.sleep(1)
@@ -348,6 +727,7 @@ def main():
         json.dump(result, f, ensure_ascii=False, indent=4)
 
     print(f"Evaluation completed. results saved in '{filepath}'.")
+
 
 if __name__ == "__main__":
     main()
